@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import styles from "./auth.module.scss"
 import { MdPassword } from "react-icons/md"
 import Card from "../../components/card/Card"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { Helmet } from "react-helmet"
 import { toast } from "react-toastify"
 import { resetPassword } from "../../services/authService"
@@ -15,6 +15,7 @@ const initialState = {
 const Reset = () => {
   const [formData, setFormData] = useState(initialState)
   const { password, confirmPassword } = formData
+  const navigate = useNavigate()
 
   const { resetToken } = useParams()
 
@@ -42,7 +43,10 @@ const Reset = () => {
 
     try {
       const data = await resetPassword(userData, resetToken)
-      toast.success(data.messgae)
+      toast.success(data.message)
+      setTimeout(() => {
+        navigate("/login")
+      }, 5000)
     } catch (error) {
       console.error(error.message)
     }
