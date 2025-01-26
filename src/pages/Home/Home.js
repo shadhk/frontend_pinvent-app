@@ -4,6 +4,7 @@ import { RiProductHuntLine } from "react-icons/ri"
 import { Helmet } from "react-helmet"
 import "./Home.scss"
 import heroImage from "../../assets/inv-img.png"
+import { ShowOnLogin, ShowOnLogout } from "../../components/protect/HiddenLink"
 
 const Home = () => {
   return (
@@ -12,24 +13,32 @@ const Home = () => {
         <title>Home</title>
       </Helmet>
       <div className="home">
+        <h1>Hello</h1>
+        <h2>Amphi</h2>
         <nav className="container --flex-between">
           <div className="logo">
             <RiProductHuntLine size={35} />
           </div>
           <ul className="home-links">
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <button className="--btn --btn-primary">
-                <Link to="/login">Login</Link>
-              </button>
-            </li>
-            <li>
-              <button className="--btn --btn-primary">
-                <Link to="/dashboard">Dashboard</Link>
-              </button>
-            </li>
+            <ShowOnLogout>
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+            </ShowOnLogout>
+            <ShowOnLogout>
+              <li>
+                <button className="--btn --btn-primary">
+                  <Link to="/login">Login</Link>
+                </button>
+              </li>
+            </ShowOnLogout>
+            <ShowOnLogin>
+              <li>
+                <button className="--btn --btn-primary">
+                  <Link to="/dashboard">Dashboard</Link>
+                </button>
+              </li>
+            </ShowOnLogin>
           </ul>
         </nav>
         {/* HERO SECTION */}
@@ -43,13 +52,25 @@ const Home = () => {
               </button>
             </div>
             <div className="--flex-start">
-              <NumberText num="14K" text="Brand Owners" />
-              <NumberText num="23K" text="Active Users" />
-              <NumberText num="500+" text="Partners" />
+              <NumberText
+                num="14K"
+                text="Brand Owners"
+              />
+              <NumberText
+                num="23K"
+                text="Active Users"
+              />
+              <NumberText
+                num="500+"
+                text="Partners"
+              />
             </div>
           </div>
           <div className="hero-image">
-            <img src={heroImage} alt="Inventory" />
+            <img
+              src={heroImage}
+              alt="Inventory"
+            />
           </div>
         </section>
       </div>
